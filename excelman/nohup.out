@@ -1,0 +1,407 @@
+[10/Jan/2018 12:15:14] "GET /home/ HTTP/1.1" 200 12737
+Not Found: /favicon.ico
+[10/Jan/2018 12:15:15] "GET /favicon.ico HTTP/1.1" 404 2143
+[10/Jan/2018 12:15:55] "GET /home/ HTTP/1.1" 200 12737
+[10/Jan/2018 12:15:58] "GET /home/ HTTP/1.1" 200 12737
+[10/Jan/2018 12:16:19] "POST /home/ HTTP/1.1" 200 36660
+[10/Jan/2018 12:16:34] "POST /home/ HTTP/1.1" 200 9302
+[10/Jan/2018 12:22:49] "POST /home/ HTTP/1.1" 200 36660
+[10/Jan/2018 14:08:46] "GET /home HTTP/1.1" 301 0
+[10/Jan/2018 14:08:46] "GET /home/ HTTP/1.1" 200 12737
+Not Found: /favicon.ico
+[10/Jan/2018 14:08:48] "GET /favicon.ico HTTP/1.1" 404 2143
+[11/Jan/2018 06:28:54] "GET /home HTTP/1.1" 301 0
+[11/Jan/2018 06:28:55] "GET /home/ HTTP/1.1" 200 12737
+Not Found: /favicon.ico
+[11/Jan/2018 06:28:55] "GET /favicon.ico HTTP/1.1" 404 2142
+[11/Jan/2018 06:29:19] "POST /home/ HTTP/1.1" 200 12844
+[11/Jan/2018 06:29:21] "POST /home/ HTTP/1.1" 200 59273
+[11/Jan/2018 06:29:33] "POST /home/ HTTP/1.1" 200 60065
+[11/Jan/2018 06:29:42] "POST /home/ HTTP/1.1" 200 59735
+[11/Jan/2018 06:29:48] "POST /home/ HTTP/1.1" 200 12737
+[11/Jan/2018 06:29:54] "POST /home/ HTTP/1.1" 200 13864
+[11/Jan/2018 06:30:09] "POST /home/ HTTP/1.1" 200 12737
+[11/Jan/2018 06:30:31] "POST /home/ HTTP/1.1" 200 12844
+[11/Jan/2018 06:30:40] "POST /home/ HTTP/1.1" 200 30039
+[11/Jan/2018 06:31:07] "POST /home/ HTTP/1.1" 200 12737
+/usr/lib64/python3.6/site-packages/django/db/models/fields/__init__.py:1423: RuntimeWarning: DateTimeField Document.pub_date received a naive datetime (2018-01-11 06:33:20.346889) while time zone support is active.
+  RuntimeWarning)
+[11/Jan/2018 06:33:20] "POST /home/ HTTP/1.1" 200 12737
+[11/Jan/2018 06:33:58] "GET /home/ HTTP/1.1" 200 12737
+[11/Jan/2018 08:02:12] "GET /home/ HTTP/1.1" 200 12737
+[11/Jan/2018 08:02:13] "GET /home/ HTTP/1.1" 200 12737
+[11/Jan/2018 08:25:36] "GET /home/ HTTP/1.1" 200 12737
+[11/Jan/2018 08:25:36] "GET /home/ HTTP/1.1" 200 12737
+Not Found: /favicon.ico
+[11/Jan/2018 08:25:39] "GET /favicon.ico HTTP/1.1" 404 2142
+Not Found: /favicon.ico
+[11/Jan/2018 08:25:39] "GET /favicon.ico HTTP/1.1" 404 2142
+Forbidden (CSRF token missing or incorrect.): /home/
+[11/Jan/2018 08:33:27] "POST /home/ HTTP/1.1" 403 2513
+[11/Jan/2018 08:33:39] "GET /home/ HTTP/1.1" 200 12737
+/usr/lib64/python3.6/site-packages/django/db/models/fields/__init__.py:1423: RuntimeWarning: DateTimeField Document.pub_date received a naive datetime (2018-01-11 08:33:50.015119) while time zone support is active.
+  RuntimeWarning)
+[11/Jan/2018 08:33:50] "POST /home/ HTTP/1.1" 200 13259
+[11/Jan/2018 08:34:21] "POST /home/ HTTP/1.1" 200 13364
+Internal Server Error: /home/
+Traceback (most recent call last):
+  File "/usr/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/lib64/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/lib64/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/djangoproject/excelman/ExcelProcess/views.py", line 91, in home
+    body=process()
+  File "/home/djangoproject/excelman/ExcelProcess/views.py", line 214, in process
+    return generate_csv()#fdata)
+  File "/home/djangoproject/excelman/ExcelProcess/views.py", line 318, in generate_csv
+    ttl=len(fdata)
+TypeError: object of type 'filter' has no len()
+[11/Jan/2018 08:34:33] "POST /home/ HTTP/1.1" 500 77160
+[11/Jan/2018 08:34:40] "POST /home/ HTTP/1.1" 200 13259
+[11/Jan/2018 08:34:59] "POST /home/ HTTP/1.1" 200 13527
+[11/Jan/2018 08:35:14] "POST /home/ HTTP/1.1" 200 13691
+[11/Jan/2018 08:35:30] "POST /home/ HTTP/1.1" 200 13691
+[11/Jan/2018 08:35:54] "POST /home/ HTTP/1.1" 200 13372
+[11/Jan/2018 08:35:58] "POST /home/ HTTP/1.1" 200 62784
+[11/Jan/2018 08:36:15] "POST /home/ HTTP/1.1" 200 38561
+[11/Jan/2018 09:16:51] "POST /home/ HTTP/1.1" 200 13259
+/usr/lib64/python3.6/site-packages/django/db/models/fields/__init__.py:1423: RuntimeWarning: DateTimeField Document.pub_date received a naive datetime (2018-01-11 09:17:02.660941) while time zone support is active.
+  RuntimeWarning)
+[11/Jan/2018 09:17:02] "POST /home/ HTTP/1.1" 200 14407
+[11/Jan/2018 09:17:15] "POST /home/ HTTP/1.1" 200 67878
+[11/Jan/2018 09:17:25] "POST /home/ HTTP/1.1" 200 14407
+[11/Jan/2018 09:17:35] "POST /home/ HTTP/1.1" 200 14548
+[11/Jan/2018 09:17:38] "POST /home/ HTTP/1.1" 200 67590
+[11/Jan/2018 09:17:52] "POST /home/ HTTP/1.1" 200 14407
+[11/Jan/2018 09:18:01] "POST /home/ HTTP/1.1" 200 14542
+[11/Jan/2018 09:18:04] "POST /home/ HTTP/1.1" 200 68746
+[11/Jan/2018 09:18:14] "POST /home/ HTTP/1.1" 200 14542
+[11/Jan/2018 09:18:16] "POST /home/ HTTP/1.1" 200 14407
+[11/Jan/2018 09:18:23] "POST /home/ HTTP/1.1" 200 14542
+[11/Jan/2018 09:18:25] "POST /home/ HTTP/1.1" 200 17042
+[11/Jan/2018 09:18:38] "POST /home/ HTTP/1.1" 200 14703
+[11/Jan/2018 09:18:42] "POST /home/ HTTP/1.1" 200 14407
+[11/Jan/2018 09:18:49] "POST /home/ HTTP/1.1" 200 14542
+[11/Jan/2018 09:18:51] "POST /home/ HTTP/1.1" 200 68746
+[11/Jan/2018 09:19:20] "POST /home/ HTTP/1.1" 200 14407
+[11/Jan/2018 09:19:29] "POST /home/ HTTP/1.1" 200 14840
+[11/Jan/2018 09:22:26] "GET /home/ HTTP/1.1" 200 14407
+[11/Jan/2018 09:23:01] "GET /home/ HTTP/1.1" 200 14407
+Not Found: /favicon.ico
+[11/Jan/2018 09:23:02] "GET /favicon.ico HTTP/1.1" 404 2142
+[11/Jan/2018 09:23:33] "POST /home/ HTTP/1.1" 200 67878
+Not Found: /favicon.ico
+[11/Jan/2018 09:23:34] "GET /favicon.ico HTTP/1.1" 404 2142
+[11/Jan/2018 09:26:17] "POST /home/ HTTP/1.1" 200 14675
+[11/Jan/2018 09:26:22] "POST /home/ HTTP/1.1" 200 67878
+[11/Jan/2018 09:26:27] "POST /home/ HTTP/1.1" 200 14407
+[11/Jan/2018 09:26:39] "POST /home/ HTTP/1.1" 200 14839
+[11/Jan/2018 09:26:49] "POST /home/ HTTP/1.1" 200 14407
+[11/Jan/2018 09:26:58] "POST /home/ HTTP/1.1" 200 14407
+[11/Jan/2018 09:27:33] "POST /home/ HTTP/1.1" 200 14570
+[11/Jan/2018 09:27:36] "POST /home/ HTTP/1.1" 200 17042
+[11/Jan/2018 09:27:41] "POST /home/ HTTP/1.1" 200 14407
+[11/Jan/2018 09:28:36] "POST /home/ HTTP/1.1" 200 67878
+[11/Jan/2018 09:28:44] "POST /home/ HTTP/1.1" 200 14407
+[11/Jan/2018 09:28:55] "POST /home/ HTTP/1.1" 200 15725
+[11/Jan/2018 09:29:16] "POST /home/ HTTP/1.1" 200 14407
+Internal Server Error: /home/
+Traceback (most recent call last):
+  File "/usr/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/lib64/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/lib64/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/djangoproject/excelman/ExcelProcess/views.py", line 91, in home
+    body=process()
+  File "/home/djangoproject/excelman/ExcelProcess/views.py", line 161, in process
+    return generate_csv()#fdata) #generate_without_conditions
+  File "/home/djangoproject/excelman/ExcelProcess/views.py", line 265, in generate_csv
+    percent[xcol.index(r[of_index])][ycol.index(r[ag_index])] += 1
+ValueError: '' is not in list
+[11/Jan/2018 09:29:26] "POST /home/ HTTP/1.1" 500 78822
+[11/Jan/2018 09:29:32] "POST /home/ HTTP/1.1" 200 14407
+[11/Jan/2018 09:29:34] "POST /home/ HTTP/1.1" 200 14407
+[11/Jan/2018 09:29:42] "POST /home/ HTTP/1.1" 200 14407
+Internal Server Error: /home/
+Traceback (most recent call last):
+  File "/usr/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/lib64/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/lib64/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/djangoproject/excelman/ExcelProcess/views.py", line 91, in home
+    body=process()
+  File "/home/djangoproject/excelman/ExcelProcess/views.py", line 161, in process
+    return generate_csv()#fdata) #generate_without_conditions
+  File "/home/djangoproject/excelman/ExcelProcess/views.py", line 265, in generate_csv
+    percent[xcol.index(r[of_index])][ycol.index(r[ag_index])] += 1
+ValueError: '' is not in list
+[11/Jan/2018 09:29:57] "POST /home/ HTTP/1.1" 500 78822
+Internal Server Error: /home/
+Traceback (most recent call last):
+  File "/usr/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/lib64/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/lib64/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/djangoproject/excelman/ExcelProcess/views.py", line 91, in home
+    body=process()
+  File "/home/djangoproject/excelman/ExcelProcess/views.py", line 161, in process
+    return generate_csv()#fdata) #generate_without_conditions
+  File "/home/djangoproject/excelman/ExcelProcess/views.py", line 265, in generate_csv
+    percent[xcol.index(r[of_index])][ycol.index(r[ag_index])] += 1
+ValueError: '' is not in list
+[11/Jan/2018 09:30:08] "POST /home/ HTTP/1.1" 500 78600
+Internal Server Error: /home/
+Traceback (most recent call last):
+  File "/usr/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/lib64/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/lib64/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/djangoproject/excelman/ExcelProcess/views.py", line 91, in home
+    body=process()
+  File "/home/djangoproject/excelman/ExcelProcess/views.py", line 161, in process
+    return generate_csv()#fdata) #generate_without_conditions
+  File "/home/djangoproject/excelman/ExcelProcess/views.py", line 265, in generate_csv
+    percent[xcol.index(r[of_index])][ycol.index(r[ag_index])] += 1
+ValueError: '' is not in list
+[11/Jan/2018 09:30:31] "POST /home/ HTTP/1.1" 500 78600
+[11/Jan/2018 09:30:39] "POST /home/ HTTP/1.1" 200 15725
+[11/Jan/2018 09:31:04] "POST /home/ HTTP/1.1" 200 15653
+[11/Jan/2018 09:31:11] "POST /home/ HTTP/1.1" 200 14407
+Internal Server Error: /home/
+Traceback (most recent call last):
+  File "/usr/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/lib64/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/lib64/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/djangoproject/excelman/ExcelProcess/views.py", line 91, in home
+    body=process()
+  File "/home/djangoproject/excelman/ExcelProcess/views.py", line 161, in process
+    return generate_csv()#fdata) #generate_without_conditions
+  File "/home/djangoproject/excelman/ExcelProcess/views.py", line 338, in generate_csv
+    percent[ycol.index(r[ag_index])] += 1
+ValueError: '' is not in list
+[11/Jan/2018 09:31:22] "POST /home/ HTTP/1.1" 500 83378
+[11/Jan/2018 09:36:12] "GET /home/ HTTP/1.1" 200 14407
+[11/Jan/2018 09:36:31] "POST /home/ HTTP/1.1" 200 15477
+[11/Jan/2018 09:36:41] "POST /home/ HTTP/1.1" 200 16538
+[11/Jan/2018 09:36:52] "POST /home/ HTTP/1.1" 200 15725
+[11/Jan/2018 09:37:07] "POST /home/ HTTP/1.1" 200 67878
+Internal Server Error: /home/
+Traceback (most recent call last):
+  File "/usr/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/lib64/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/lib64/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/djangoproject/excelman/ExcelProcess/views.py", line 91, in home
+    body=process()
+  File "/home/djangoproject/excelman/ExcelProcess/views.py", line 161, in process
+    return generate_csv()#fdata) #generate_without_conditions
+  File "/home/djangoproject/excelman/ExcelProcess/views.py", line 265, in generate_csv
+    percent[xcol.index(r[of_index])][ycol.index(r[ag_index])] += 1
+ValueError: '' is not in list
+[11/Jan/2018 09:37:22] "POST /home/ HTTP/1.1" 500 103580
+[11/Jan/2018 09:43:25] "POST /home/ HTTP/1.1" 200 14407
+Internal Server Error: /home/
+Traceback (most recent call last):
+  File "/usr/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/lib64/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/lib64/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/djangoproject/excelman/ExcelProcess/views.py", line 91, in home
+    body=process()
+  File "/home/djangoproject/excelman/ExcelProcess/views.py", line 161, in process
+    return generate_csv()#fdata) #generate_without_conditions
+  File "/home/djangoproject/excelman/ExcelProcess/views.py", line 265, in generate_csv
+    percent[xcol.index(r[of_index])][ycol.index(r[ag_index])] += 1
+ValueError: '' is not in list
+[11/Jan/2018 09:43:38] "POST /home/ HTTP/1.1" 500 78536
+[11/Jan/2018 09:43:42] "POST /home/ HTTP/1.1" 200 14407
+/usr/lib64/python3.6/site-packages/django/db/models/fields/__init__.py:1423: RuntimeWarning: DateTimeField Document.pub_date received a naive datetime (2018-01-11 09:44:00.934753) while time zone support is active.
+  RuntimeWarning)
+[11/Jan/2018 09:44:00] "POST /home/ HTTP/1.1" 200 14407
+[11/Jan/2018 09:45:43] "POST /home/ HTTP/1.1" 200 16991
+[11/Jan/2018 09:46:48] "POST /home/ HTTP/1.1" 200 14407
+[11/Jan/2018 09:47:02] "GET /home/ HTTP/1.1" 200 14407
+[11/Jan/2018 09:47:16] "POST /home/ HTTP/1.1" 200 14538
+[11/Jan/2018 09:47:20] "POST /home/ HTTP/1.1" 200 14834
+[11/Jan/2018 09:47:27] "POST /home/ HTTP/1.1" 200 14407
+Internal Server Error: /home/
+Traceback (most recent call last):
+  File "/usr/lib64/python3.6/site-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/lib64/python3.6/site-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/lib64/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/djangoproject/excelman/ExcelProcess/views.py", line 91, in home
+    body=process()
+  File "/home/djangoproject/excelman/ExcelProcess/views.py", line 161, in process
+    return generate_csv()#fdata) #generate_without_conditions
+  File "/home/djangoproject/excelman/ExcelProcess/views.py", line 300, in generate_csv
+    t.append(percent[xcol.index(e)])
+ValueError: 'AVP' is not in list
+[11/Jan/2018 09:47:48] "POST /home/ HTTP/1.1" 500 79838
+Performing system checks...
+
+System check identified no issues (0 silenced).
+January 11, 2018 - 06:50:03
+Django version 2.0.1, using settings 'excelman.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+[11/Jan/2018 09:53:17] "GET /home/ HTTP/1.1" 200 14407
+[11/Jan/2018 09:53:35] "POST /home/ HTTP/1.1" 200 18453
+[11/Jan/2018 09:53:41] "POST /home/ HTTP/1.1" 200 14407
+[11/Jan/2018 09:53:49] "POST /home/ HTTP/1.1" 200 14839
+[11/Jan/2018 09:53:55] "POST /home/ HTTP/1.1" 200 14839
+[11/Jan/2018 09:54:03] "POST /home/ HTTP/1.1" 200 14841
+[11/Jan/2018 09:54:35] "POST /home/ HTTP/1.1" 200 14407
+[11/Jan/2018 15:31:51] code 400, message Bad request syntax ('\x00\x00\x00TZ\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x04\x010I\x00\x00\x00\x00\x80\x0b¨À\x00\x0c)t F\x07\x00tsXrcsXYs9\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00bbXcsXctst\x00\x00\x00\x00\x00\x00')
+[11/Jan/2018 15:31:51] "   TZ          0I    ¨À )t F tsXrcsXYs9                      bbXcsXctst      " 400 -
+[11/Jan/2018 15:37:18] "GET /home HTTP/1.1" 301 0
+[11/Jan/2018 15:37:18] "GET /home/ HTTP/1.1" 200 14407
+Not Found: /favicon.ico
+[11/Jan/2018 15:37:19] "GET /favicon.ico HTTP/1.1" 404 2142
+[11/Jan/2018 15:37:51] "POST /home/ HTTP/1.1" 200 67922
+[11/Jan/2018 15:38:12] "POST /home/ HTTP/1.1" 200 14512
+[11/Jan/2018 15:38:15] "POST /home/ HTTP/1.1" 200 67816
+[11/Jan/2018 15:38:32] "POST /home/ HTTP/1.1" 200 14806
+[11/Jan/2018 15:38:43] "POST /home/ HTTP/1.1" 200 15284
+[11/Jan/2018 15:38:49] "POST /home/ HTTP/1.1" 200 14407
+[11/Jan/2018 15:39:06] "POST /home/ HTTP/1.1" 200 14512
+[11/Jan/2018 15:39:18] "POST /home/ HTTP/1.1" 200 14619
+[11/Jan/2018 15:39:38] "POST /home/ HTTP/1.1" 200 15055
+[11/Jan/2018 15:41:17] "POST /home/ HTTP/1.1" 200 14407
+[11/Jan/2018 15:41:24] "POST /home/ HTTP/1.1" 200 67922
+[11/Jan/2018 15:42:03] "POST /home/ HTTP/1.1" 200 24015
+[11/Jan/2018 15:42:40] "POST /home/ HTTP/1.1" 200 6714
+[11/Jan/2018 15:43:16] "POST /home/ HTTP/1.1" 200 14407
+[11/Jan/2018 15:43:43] "POST /home/ HTTP/1.1" 200 14407
+[11/Jan/2018 15:43:56] "POST /home/ HTTP/1.1" 200 16086
+[11/Jan/2018 15:43:58] "POST /home/ HTTP/1.1" 200 5718
+[11/Jan/2018 15:44:57] "POST /home/ HTTP/1.1" 200 14407
+[11/Jan/2018 15:45:44] "POST /home/ HTTP/1.1" 200 65511
+[11/Jan/2018 15:46:22] "POST /home/ HTTP/1.1" 200 14542
+[11/Jan/2018 15:46:25] "POST /home/ HTTP/1.1" 200 24727
+[11/Jan/2018 15:46:54] "POST /home/ HTTP/1.1" 200 14542
+[11/Jan/2018 15:46:57] "POST /home/ HTTP/1.1" 200 14407
+[11/Jan/2018 15:47:21] "POST /home/ HTTP/1.1" 200 14548
+[11/Jan/2018 15:47:24] "POST /home/ HTTP/1.1" 200 68198
+[11/Jan/2018 15:48:07] "POST /home/ HTTP/1.1" 200 69040
+[11/Jan/2018 15:48:17] "POST /home/ HTTP/1.1" 200 14407
+[11/Jan/2018 18:07:46] "GET /home/ HTTP/1.1" 200 14407
+[12/Jan/2018 04:44:33] "GET /home HTTP/1.1" 301 0
+[12/Jan/2018 04:44:34] "GET /home/ HTTP/1.1" 200 14407
+Not Found: /favicon.ico
+[12/Jan/2018 04:44:35] "GET /favicon.ico HTTP/1.1" 404 2144
+[12/Jan/2018 04:44:55] "POST /home/ HTTP/1.1" 200 16538
+[12/Jan/2018 04:45:06] "POST /home/ HTTP/1.1" 200 16991
+[12/Jan/2018 04:56:17] "POST /home/ HTTP/1.1" 200 14407
+/usr/lib64/python3.6/site-packages/django/db/models/fields/__init__.py:1423: RuntimeWarning: DateTimeField Document.pub_date received a naive datetime (2018-01-12 04:56:53.444311) while time zone support is active.
+  RuntimeWarning)
+[12/Jan/2018 04:56:53] "POST /home/ HTTP/1.1" 200 14407
+[12/Jan/2018 04:57:22] "POST /home/ HTTP/1.1" 200 15292
+[12/Jan/2018 04:57:35] "POST /home/ HTTP/1.1" 200 14407
+[12/Jan/2018 04:58:24] "POST /home/ HTTP/1.1" 200 16086
+[12/Jan/2018 04:59:05] "POST /home/ HTTP/1.1" 200 18453
+[12/Jan/2018 05:00:28] "POST /home/ HTTP/1.1" 200 14407
+[12/Jan/2018 05:00:49] "POST /home/ HTTP/1.1" 200 68082
+[12/Jan/2018 05:01:03] "POST /home/ HTTP/1.1" 200 68104
+[12/Jan/2018 05:01:38] "POST /home/ HTTP/1.1" 200 14407
+[12/Jan/2018 05:01:50] "POST /home/ HTTP/1.1" 200 14528
+[12/Jan/2018 05:01:54] "POST /home/ HTTP/1.1" 200 67978
+[12/Jan/2018 05:02:07] "POST /home/ HTTP/1.1" 200 14407
+[12/Jan/2018 05:02:20] "POST /home/ HTTP/1.1" 200 14528
+[12/Jan/2018 05:02:29] "POST /home/ HTTP/1.1" 200 14707
+[12/Jan/2018 05:02:46] "POST /home/ HTTP/1.1" 200 14407
+[12/Jan/2018 05:02:58] "POST /home/ HTTP/1.1" 200 15477
+[12/Jan/2018 05:03:28] "POST /home/ HTTP/1.1" 200 14407
+[12/Jan/2018 05:03:55] "POST /home/ HTTP/1.1" 200 14540
+[12/Jan/2018 05:04:47] "POST /home/ HTTP/1.1" 200 15728
+[12/Jan/2018 05:05:10] "POST /home/ HTTP/1.1" 200 14407
+[12/Jan/2018 05:05:40] "POST /home/ HTTP/1.1" 200 14526
+[12/Jan/2018 05:05:59] "POST /home/ HTTP/1.1" 200 14659
+[12/Jan/2018 05:06:54] "POST /home/ HTTP/1.1" 200 15748
+[12/Jan/2018 05:07:32] "POST /home/ HTTP/1.1" 200 5620
+[12/Jan/2018 05:08:11] "POST /home/ HTTP/1.1" 200 14407
+[12/Jan/2018 05:08:21] "POST /home/ HTTP/1.1" 200 14510
+[12/Jan/2018 05:08:27] "POST /home/ HTTP/1.1" 200 15282
+[12/Jan/2018 05:08:29] "POST /home/ HTTP/1.1" 200 5536
+[12/Jan/2018 05:09:50] "GET /home/ HTTP/1.1" 200 14407
+[12/Jan/2018 05:10:01] "POST /home/ HTTP/1.1" 200 14613
+[12/Jan/2018 05:10:05] "POST /home/ HTTP/1.1" 200 14407
+[12/Jan/2018 05:10:10] "POST /home/ HTTP/1.1" 200 16086
+[12/Jan/2018 05:10:12] "POST /home/ HTTP/1.1" 200 5717
+[12/Jan/2018 05:19:55] "GET /home/ HTTP/1.1" 200 14407
+[12/Jan/2018 05:22:48] "GET /home/ HTTP/1.1" 200 14407
+[12/Jan/2018 05:28:35] "GET /home/ HTTP/1.1" 200 14407
+Not Found: /favicon.ico
+[12/Jan/2018 05:28:43] "GET /favicon.ico HTTP/1.1" 404 2144
+[12/Jan/2018 05:37:50] "POST /home/ HTTP/1.1" 200 14673
+[12/Jan/2018 05:38:06] "POST /home/ HTTP/1.1" 200 68082
+[12/Jan/2018 05:38:10] "POST /home/ HTTP/1.1" 200 14407
+[12/Jan/2018 05:38:27] "POST /home/ HTTP/1.1" 200 14839
+[12/Jan/2018 05:39:25] "POST /home/ HTTP/1.1" 200 14407
+[12/Jan/2018 05:40:14] "POST /home/ HTTP/1.1" 200 16086
+[12/Jan/2018 05:40:40] "POST /home/ HTTP/1.1" 200 14407
+[12/Jan/2018 05:40:51] "POST /home/ HTTP/1.1" 200 18453
+[12/Jan/2018 05:41:26] "POST /home/ HTTP/1.1" 200 14407
+[12/Jan/2018 05:41:56] "POST /home/ HTTP/1.1" 200 18453
+[12/Jan/2018 05:42:57] "POST /home/ HTTP/1.1" 200 14675
+[12/Jan/2018 05:43:06] "POST /home/ HTTP/1.1" 200 14407
+[12/Jan/2018 05:43:18] "POST /home/ HTTP/1.1" 200 14514
+[12/Jan/2018 05:43:30] "POST /home/ HTTP/1.1" 200 14693
+[12/Jan/2018 05:43:38] "POST /home/ HTTP/1.1" 200 14407
+[12/Jan/2018 05:43:46] "POST /home/ HTTP/1.1" 200 15534
+[12/Jan/2018 05:44:09] "POST /home/ HTTP/1.1" 200 14522
+[12/Jan/2018 05:44:20] "POST /home/ HTTP/1.1" 200 14818
+[12/Jan/2018 05:44:28] "POST /home/ HTTP/1.1" 200 14407
+[12/Jan/2018 05:44:36] "POST /home/ HTTP/1.1" 200 14532
+[12/Jan/2018 05:44:49] "POST /home/ HTTP/1.1" 200 14637
+[12/Jan/2018 05:45:05] "POST /home/ HTTP/1.1" 200 15686
+[12/Jan/2018 05:45:28] "POST /home/ HTTP/1.1" 200 14407
+[12/Jan/2018 05:46:00] "POST /home/ HTTP/1.1" 200 16086
+[12/Jan/2018 05:46:05] "POST /home/ HTTP/1.1" 200 5718
+[12/Jan/2018 05:47:13] "POST /home/ HTTP/1.1" 200 14407
+[12/Jan/2018 05:49:16] "POST /home/ HTTP/1.1" 200 68082
+[12/Jan/2018 05:49:23] "POST /home/ HTTP/1.1" 200 14407
+[12/Jan/2018 05:49:36] "POST /home/ HTTP/1.1" 200 14514
+[12/Jan/2018 05:50:43] "POST /home/ HTTP/1.1" 200 14407
+[12/Jan/2018 05:51:01] "POST /home/ HTTP/1.1" 200 14522
+[12/Jan/2018 05:51:03] "POST /home/ HTTP/1.1" 200 17042
+[12/Jan/2018 06:21:15] "POST /home/ HTTP/1.1" 200 14522
+[12/Jan/2018 06:21:17] "POST /home/ HTTP/1.1" 200 14407
+[12/Jan/2018 06:21:18] "POST /home/ HTTP/1.1" 200 68082
+[12/Jan/2018 06:21:26] "POST /home/ HTTP/1.1" 200 14407
+[12/Jan/2018 06:21:32] "POST /home/ HTTP/1.1" 200 14407
+[12/Jan/2018 06:21:41] "POST /home/ HTTP/1.1" 200 14407
+[12/Jan/2018 06:21:48] "POST /home/ HTTP/1.1" 200 68082
+[12/Jan/2018 06:22:10] "POST /home/ HTTP/1.1" 200 14558
+[12/Jan/2018 06:22:13] "POST /home/ HTTP/1.1" 200 17042
+[12/Jan/2018 06:22:23] "POST /home/ HTTP/1.1" 200 14407
+[12/Jan/2018 06:22:42] "POST /home/ HTTP/1.1" 200 14558
+[12/Jan/2018 06:22:45] "POST /home/ HTTP/1.1" 200 17042
+[12/Jan/2018 06:23:04] "POST /home/ HTTP/1.1" 200 14608
+[12/Jan/2018 06:23:07] "POST /home/ HTTP/1.1" 200 14407
+[12/Jan/2018 06:23:07] "POST /home/ HTTP/1.1" 200 14407
+[12/Jan/2018 06:23:19] "POST /home/ HTTP/1.1" 200 45174
+[12/Jan/2018 06:23:51] "POST /home/ HTTP/1.1" 200 14407
+[12/Jan/2018 06:24:03] "POST /home/ HTTP/1.1" 200 14532
+[12/Jan/2018 06:24:06] "POST /home/ HTTP/1.1" 200 17042
+[12/Jan/2018 06:26:45] "POST /home/ HTTP/1.1" 200 14689
+[12/Jan/2018 06:26:48] "POST /home/ HTTP/1.1" 200 14407

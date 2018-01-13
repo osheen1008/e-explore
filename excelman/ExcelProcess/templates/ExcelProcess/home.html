@@ -1,0 +1,149 @@
+<form method="POST" action="{% url 'home' %}" enctype="multipart/form-data">
+{% csrf_token %}
+<p style="text-align:right">
+	Last Upated: {{ time }}
+	<br/><br/>
+	</p>
+<p>
+<center>
+{% csrf_token %}
+            <p>{{ form.non_field_errors }}</p>
+            <p>{{ form.docfile.label_tag }} 
+               {{ form.docfile.errors }}
+               {{ form.docfile }}
+			   <input type="submit" value="Upload" name="upload"/>  
+            </p>
+            <p></p>
+			<hr>
+	<table style="height: 188px;" width="639">
+<tbody>
+<!------------------------------------------------------------------------------------------------------->
+
+<tr>
+<td style="width: 152.8px;">&nbsp;</td>
+<td style="width: 152.8px; padding-bottom:50">&nbsp;</td>
+<td style="width: 152.8px;">&nbsp;</td>
+<td style="width: 153.6px;">&nbsp;</td>
+<td style="width: 153.6px;">&nbsp;</td>
+<td style="width: 153.6px; white-space: nowrap; padding-left:50" >All Constraints</td>
+</tr>
+<!------------------------------------------------------------------------------------------------------->
+<tr>
+<td style="width: 152.8px; white-space: nowrap">Choose Column:</td>
+<td style="width: 152.8px; text-align: center;">
+<select name="col">
+{% for o in options %}
+<option style="width: 153.6px; white-space: nowrap" value="{{ o }}"> {{ o }} </option>
+{% endfor %}
+</select>
+</td>
+<td style="width: 152.8px; text-align: center;"><select name="signs">
+<option value="=">=</option>
+<option value="<">&lt;</option>
+<option value=">">&gt;</option>
+<option value="bet">between</option>
+</select></td>
+<td style="width: 153.6px;"><input name="field" type="textbox" value= "{{ selected }}"></td>
+<td style="width: 153.6px;"><input type="submit" name="add_to_conditions" value="Add" /></td>
+<td style="width: 153.6px;" rowspan=6>
+
+{% for c in conditions %}
+<li style="width: 153.6px; white-space: nowrap; padding-left:50" value="{{ c }}">{{ c }}</li>
+{% endfor %}
+</td>
+</tr>
+<!------------------------------------------------------------------------------------------------------->
+<tr>
+<td style="width: 152.8px;">&nbsp;</td>
+<td style="width: 152.8px;">&nbsp;</td>
+<td style="width: 152.8px;">&nbsp;</td>
+<td style="width: 153.6px;">&nbsp;</td>
+<td style="width: 153.6px;">&nbsp;</td>
+</tr>
+<!------------------------------------------------------------------------------------------------------->
+<tr>
+<td style="width: 152.8px;">Percentage</td>
+<td style="width: 152.8px; text-align: center;">&nbsp;of&nbsp; <select name="pof">
+{% for o in options %}
+<option value="{{ o }}"> {{ o }} </option>
+{% endfor %}
+</select></td>
+<td style="width: 153.6px; text-align: center;">&nbsp;against&nbsp; &nbsp; &nbsp;<select name="pag">
+{% for o in options %}
+<option value="{{ o }}"> {{ o }} </option>
+{% endfor %}
+</select></td>
+<td style="width: 153.6px;">&nbsp;</td>
+<td style="width: 152.8px; text-align: center;">&nbsp;&nbsp;</td>
+</tr>
+<!------------------------------------------------------------------------------------------------------->
+<tr>
+<td style="width: 152.8px;">&nbsp;</td>
+<td style="width: 152.8px;">&nbsp;</td>
+<td style="width: 152.8px;">&nbsp;</td>
+<td style="width: 153.6px;">&nbsp;</td>
+<td style="width: 153.6px;">&nbsp;</td>
+</tr>
+<!------------------------------------------------------------------------------------------------------->
+<tr>
+<td style="width: 152.8px;">&nbsp;</td>
+<td style="width: 152.8px;">&nbsp;</td>
+<td style="width: 152.8px;">&nbsp;</td>
+<td style="width: 153.6px;">&nbsp;</td>
+<td style="width: 153.6px;">&nbsp;</td>
+</tr>
+<!------------------------------------------------------------------------------------------------------->
+<tr>
+<td style="width: 152.8px;">&nbsp;</td>
+<td style="width: 152.8px;">&nbsp;</td>
+<td style="width: 152.8px;">&nbsp;</td>
+<td style="width: 153.6px; padding-top:30"><input type="submit" value="Generate" name="generate"/> <input type="submit" value="Clear" name="clear"/></td>
+<td style="width: 153.6px;"> </td>
+</tr>
+</tbody>
+</table></center>
+	</p>
+	<!------
+	{% if latest_q_list %}
+    <ul>
+    {% for question in latest_q_list %}
+        <li><a href="/poll/{{ question.id }}/">{{ question.q_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}-->
+<p><input type="submit", name="download", value="Download"/>
+<input type="submit", name="Next", value="Next"/>
+<input type="hidden", name="body", value="{{ body }}"/></p>
+<hr/><hr/>
+<p>
+<table border=1>
+<thead>
+<tr>
+{% for h in header %}
+<td border=1>{{ h }}<td>
+{% endfor %}
+</tr>
+</thead>
+
+<tbody>
+{% for r in body %}
+<tr border=1>
+{% for c in r %}
+<td border=1>{{ c }} </td>
+{% endfor %}
+</tr>
+{% endfor %}
+</tbody>
+
+<tfoot>
+<tr>
+{% for f in footer %}
+<td> {{ f }} <td>
+{% endfor %}
+</tr>
+</tfoot>
+</table>
+</p>
+</form>
