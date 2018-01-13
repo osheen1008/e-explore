@@ -1,4 +1,33 @@
+
+
+
 <form method="POST" action="{% url 'home' %}" enctype="multipart/form-data">
+{% load static %}
+<script >
+function go(){
+	var select = document.getElementById('saturated');
+        var childArray = select.children;
+        var cL = childArray.length;
+        while(cL > 0) {
+            cL--;
+            select.removeChild(childArray[cL]);
+        }
+	var selected = document.getElementById('col').value;
+	{% for k,data in branches.items %}
+	document.getElementById("sel_col").value = "{{ k }}";
+	var key = document.getElementById("sel_col").value;
+	if(key==selected){
+	{% for x in data %}
+	var opt = document.createElement('option');
+	opt.value = "{{ x }}";
+	opt.innerHTML = "{{ x }}";
+	select.appendChild(opt);
+	{% endfor %}
+	}
+	{% endfor %}
+};
+
+</script>
 {% csrf_token %}
 <p style="text-align:right">
 	Last Upated: {{ time }}
@@ -15,7 +44,8 @@
             </p>
             <p></p>
 			<hr>
-	<table style="height: 188px;" width="639">
+<input type="hidden", id = "sel_col" name="sel_col", value="{{ body }}"/>
+<table style="height: 188px;" width="639">
 <tbody>
 <!------------------------------------------------------------------------------------------------------->
 
@@ -31,10 +61,11 @@
 <tr>
 <td style="width: 152.8px; white-space: nowrap">Choose Column:</td>
 <td style="width: 152.8px; text-align: center;">
-<select name="col">
+<select onchange = "go()" id="col" name="col">
 {% for o in options %}
-<option style="width: 153.6px; white-space: nowrap" value="{{ o }}"> {{ o }} </option>
+<option style="width: 153.6px; white-space: nowrap" value="{{ o }}">{{ o }}</option>
 {% endfor %}
+<option value="{{ branches| length }}">{{ branches| length }}</option>
 </select>
 </td>
 <td style="width: 152.8px; text-align: center;"><select name="signs">
@@ -43,7 +74,8 @@
 <option value=">">&gt;</option>
 <option value="bet">between</option>
 </select></td>
-<td style="width: 153.6px;"><input name="field" type="textbox" value= "{{ selected }}"></td>
+<td style="width: 153.6px;"><input name="field" list="saturated" type="textbox" value= "{{ selected }}">
+<datalist  id="saturated" separator=","></datalist></td>
 <td style="width: 153.6px;"><input type="submit" name="add_to_conditions" value="Add" /></td>
 <td style="width: 153.6px;" rowspan=6>
 

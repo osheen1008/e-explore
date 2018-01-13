@@ -50,6 +50,12 @@ def home(request):
 	
 	time = Document.objects.latest('pub_date')
 	
+	t = [ x for x in zip(*fdata) ]
+	branches={}
+	i=4
+	for x in t:
+		branches[cols[i]] = list(set(x[1:]))
+		i+=1
 	###############################################################################################################################
 	
 	if request.method=='POST':
@@ -78,7 +84,7 @@ def home(request):
 					cols.extend(fdata.pop(0))
 					#cols = list(filter(lambda x: x.strip()!='', cols))
 				time = Document.objects.latest('pub_date')	
-				return render(request, 'ExcelProcess/home.html', {'options':cols, 'form':DocumentForm(), 'time':time})
+				return render(request, 'ExcelProcess/home.html', {'options':cols, 'branches':branches, 'form':DocumentForm(), 'time':time})
 		#############################################################################################################################
 		
 		elif request.POST.get("generate"):
@@ -99,14 +105,14 @@ def home(request):
 			#download(body)
 			#header = body.pop(0)
 			#footer= body.pop()
-			return render(request, 'ExcelProcess/home.html',{'options':cols,'body': sbody, 'time':time})
+			return render(request, 'ExcelProcess/home.html',{'options':cols, 'branches':branches, 'body': sbody, 'time':time})
 		#############################################################################################################################
 		elif request.POST.get("Next"):
 			#global lim
 			sbody = [body[0]]
 			sbody.extend(body[min([len(body),(lim*20+1)]):min([len(body),(lim*20+1)+20])])
 			lim+=1
-			return render(request, 'ExcelProcess/home.html',{'options':cols,'body': sbody, 'time':time})
+			return render(request, 'ExcelProcess/home.html',{'options':cols, 'branches':branches, 'body': sbody, 'time':time})
 		elif request.POST.get("download"):
 			
 			data=[[1,2,3,4,5],[6,7,8,9,10]]
@@ -138,16 +144,17 @@ def home(request):
 			if request.POST['col']!='All':
 				conditions.insert(0, request.POST['col']+'\t'+request.POST['signs']+'\t'+request.POST["field"])
 			
-			return render(request, 'ExcelProcess/home.html', {'options':cols, 'form':DocumentForm(), 'time':time, 'conditions': conditions}) 
+			return render(request, 'ExcelProcess/home.html', {'options':cols, 'form':DocumentForm(), 'branches':branches,  'time':time, 'conditions': conditions}) 
 		#############################################################################################################################
 			
 		elif request.POST.get("clear"):
 			#global conditions
 			conditions=[]
-			return render(request, 'ExcelProcess/home.html', {'options':cols, 'time':time, 'form':DocumentForm()})
+			return render(request, 'ExcelProcess/home.html', {'options':cols, 'time':time, 'branches':branches,  'form':DocumentForm()})
 		#############################################################################################################################
 	
-	return render(request, 'ExcelProcess/home.html', {'options':cols,'form':form, 'time':time})
+	
+	return render(request, 'ExcelProcess/home.html', {'options':cols,'form':form, 'branches':branches, 'time':time})
 	
 	
 
