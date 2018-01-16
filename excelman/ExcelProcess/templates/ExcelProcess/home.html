@@ -1,11 +1,14 @@
 
+<form class=back method="POST" action="{% url 'home' %}" enctype="multipart/form-data">
 
-
-<form method="POST" action="{% url 'home' %}" enctype="multipart/form-data">
 {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+<img style="position: absolute; width:400px; height:90px" src="{% static 'COG-Logo-White.svg' %}"/>
+
 <script >
 function go(){
 	var select = document.getElementById('saturated');
+	select.style.display = "block";
         var childArray = select.children;
         var cL = childArray.length;
         while(cL > 0) {
@@ -29,7 +32,11 @@ function go(){
 
 </script>
 {% csrf_token %}
-<p style="text-align:right">
+{% if user.is_authenticated %}
+<div style="padding:20px; text-align:right">
+User: {{ user.get_username }}<br/>
+<a style="padding:5px;" href="{% url 'logout'%}?next={{request.path}}">Logout</a></div> 
+<p style="text-align:right; font-size:14px;">
 	Last Upated: {{ time }}
 	<br/><br/>
 	</p>
@@ -40,12 +47,12 @@ function go(){
             <p>{{ form.docfile.label_tag }} 
                {{ form.docfile.errors }}
                {{ form.docfile }}
-			   <input type="submit" value="Upload" name="upload"/>  
+			   <input class="button button_home" type="submit" value="Upload" name="upload"/>  
             </p>
             <p></p>
 			<hr>
 <input type="hidden", id = "sel_col" name="sel_col", value="{{ body }}"/>
-<table style="height: 188px;" width="639">
+<table class=back style="height: 188px;" width="639">
 <tbody>
 <!------------------------------------------------------------------------------------------------------->
 
@@ -74,9 +81,9 @@ function go(){
 <option value=">">&gt;</option>
 <option value="bet">between</option>
 </select></td>
-<td style="width: 153.6px;"><input name="field" list="saturated" type="textbox" value= "{{ selected }}">
-<datalist  id="saturated" separator=","></datalist></td>
-<td style="width: 153.6px;"><input type="submit" name="add_to_conditions" value="Add" /></td>
+<td style="width: 153.6px;">
+<select style="display:none;" class=multiple name="field" multiple id="saturated" separator=","></select></td>
+<td style="width: 153.6px;"><input class="button button_home"	 type="submit" name="add_to_conditions" value="Add" /></td>
 <td style="width: 153.6px;" rowspan=6>
 
 {% for c in conditions %}
@@ -129,7 +136,9 @@ function go(){
 <td style="width: 152.8px;">&nbsp;</td>
 <td style="width: 152.8px;">&nbsp;</td>
 <td style="width: 152.8px;">&nbsp;</td>
-<td style="width: 153.6px; padding-top:30"><input type="submit" value="Generate" name="generate"/> <input type="submit" value="Clear" name="clear"/></td>
+<td style="width: 153.6px; white-space:nowrap; padding-top:30">
+<input class="button button_home" type="submit" value="Generate" name="generate"/> 
+<input class="button button_home" type="submit" value="Clear" name="clear"/></td>
 <td style="width: 153.6px;"> </td>
 </tr>
 </tbody>
@@ -145,11 +154,13 @@ function go(){
 {% else %}
     <p>No polls are available.</p>
 {% endif %}-->
-<p><input type="submit", name="download", value="Download"/>
-<input type="submit", name="Next", value="Next"/>
-<input type="hidden", name="body", value="{{ body }}"/></p>
+{% if body %}
+<p><input class="button button_home" type="submit", name="download", value="Download"/>
+<input class="button button_home" type="submit", name="Next", value="Next"/>
+<input class="button button_home" type="hidden", name="body", value="{{ body }}"/></p>
 <hr/><hr/>
 <p>
+{% endif %}
 <table border=1>
 <thead>
 <tr>
@@ -161,9 +172,16 @@ function go(){
 
 <tbody>
 {% for r in body %}
+{% if r is body.0 %}
+<tr >
+{% for c in r %}
+<td class=headings border=1>{{ c }} </td>
+{% endfor %}
+</tr>
+{% endif %}
 <tr border=1>
 {% for c in r %}
-<td border=1>{{ c }} </td>
+<td class=content border=1>{{ c }} </td>
 {% endfor %}
 </tr>
 {% endfor %}
@@ -178,4 +196,10 @@ function go(){
 </tfoot>
 </table>
 </p>
+{% else %}
+<div style="text-align:center; padding-top:10%; padding-bottom:30%"><h2> You are not logged in.<br/><br/>
+ Please <a href="{% url 'login'%}?next={{request.path}}">Login</a> to use the service
+ </h2></div>
+
+{% endif %}
 </form>

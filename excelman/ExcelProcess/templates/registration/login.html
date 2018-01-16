@@ -1,0 +1,43 @@
+{% load static %}
+<body background="{% static 'login.png' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+
+{% if form.errors %}
+<p class=pt>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p class=pt>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+    {% else %}
+    <p class=pt>Please login to see use the service.</p>
+    {% endif %}
+{% endif %}
+
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+{% load static %}
+<img style="padding-left:72%; width:400px; height:80px" src="{% static 'ex-pro.png' %}"/>
+<div class=login>
+<center><h2>Login<h2>
+<div style="padding:20px">
+  <td>{{ form.username.label_tag }}</td>
+  <td>{{ form.username }}</td>
+</div>
+<div style="padding:20px">
+  <td>{{ form.password.label_tag }}</td>
+  <td>{{ form.password }}</td>
+</div>
+</center>
+<div>
+  <input style="margin-left:50px;" class="button" type="submit" value="login" />
+  <input type="hidden" name="next" value="{{ next }}" />
+</div>
+{# Assumes you setup the password_reset view in your URLconf #}
+<p style="margin-left:50px;" class=pos><a href="{% url 'password_reset' %}">Lost password?</a></p>
+</div>
+</form>
+
+
+</body>

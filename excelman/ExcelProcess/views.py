@@ -11,6 +11,8 @@ import shutil
 import xlsxwriter
 from dateutil.parser import parse
 import django_excel
+from django.contrib.sessions.models import Session
+from django.contrib.auth.models import User
 
 #excel=''
 fdata=[]
@@ -60,6 +62,15 @@ def home(request):
 	
 	if request.method=='POST':
 		#return fdata
+		if request.POST.get("logout"):
+			user = User.objects.get(username=request.user)
+
+			for s in Session.objects.all():
+				if s.get_decoded().get('_auth_user_id') == user.id:
+					s.delete() 
+			return render(request, 'registration/login.html')
+			
+			
 		if request.POST.get("upload"): 
 			
 			#######################################################################################################################
@@ -142,7 +153,7 @@ def home(request):
 			#cond=request.POST["all"]+'\n'+ request.POST["field"]
 			global conditions
 			if request.POST['col']!='All':
-				conditions.insert(0, request.POST['col']+'\t'+request.POST['signs']+'\t'+request.POST["field"])
+				conditions.insert(0, request.POST['col']+'\t'+request.POST['signs']+'\t'+ ",".join(request.POST.getlist("field")))
 			
 			return render(request, 'ExcelProcess/home.html', {'options':cols, 'form':DocumentForm(), 'branches':branches,  'time':time, 'conditions': conditions}) 
 		#############################################################################################################################
