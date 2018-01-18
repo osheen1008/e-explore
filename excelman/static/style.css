@@ -41,9 +41,16 @@ select{
 }
 .content{
 	background-color:rgb(217,226,243);
+	border-style: inset;
+	border-color: white;
+	padding: 1px 10px 1px 15px ;
 }
 .headings{
 	background: rgb(68, 114, 196);
 	color: white;
-	border-color: white;
+	border-collapse:separate;
+	border-color: grey;
+	padding: 1px 10px 1px 10px ;
+	border-style: outset;
 }
+.tr:nth-child(even){background-color: #f2f2f2}

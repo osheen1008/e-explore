@@ -157,44 +157,32 @@ User: {{ user.get_username }}<br/>
 {% if body %}
 <p><input class="button button_home" type="submit", name="download", value="Download"/>
 <input class="button button_home" type="submit", name="Next", value="Next"/>
-<input class="button button_home" type="hidden", name="body", value="{{ body }}"/></p>
+<input class="button button_home" type="hidden", name="body", value="{{ body }}"/>
+</p>
 <hr/><hr/>
-<p>
 {% endif %}
-<table border=1>
-<thead>
-<tr>
-{% for h in header %}
-<td border=1>{{ h }}<td>
-{% endfor %}
-</tr>
-</thead>
-
+<p>
+<div style="overflow-x:auto;">
+<table >
 <tbody>
 {% for r in body %}
 {% if r is body.0 %}
-<tr >
+<tr>
 {% for c in r %}
-<td class=headings border=1>{{ c }} </td>
+<td  border=1 class=headings >{{ c }} </td>
+{% endfor %}
+</tr>
+{% else %}
+<tr class=tr>
+{% for c in r %}
+<td class=content>{{ c }} </td>
 {% endfor %}
 </tr>
 {% endif %}
-<tr border=1>
-{% for c in r %}
-<td class=content border=1>{{ c }} </td>
-{% endfor %}
-</tr>
 {% endfor %}
 </tbody>
-
-<tfoot>
-<tr>
-{% for f in footer %}
-<td> {{ f }} <td>
-{% endfor %}
-</tr>
-</tfoot>
 </table>
+</div>
 </p>
 {% else %}
 <div style="text-align:center; padding-top:10%; padding-bottom:30%"><h2> You are not logged in.<br/><br/>
