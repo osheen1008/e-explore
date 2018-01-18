@@ -16,7 +16,7 @@ position: absolute;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 14px;
     margin: 4px 2px;
     cursor: pointer;
 	background-color: rgb(68, 114, 196);
@@ -28,8 +28,9 @@ position: absolute;
 .back {
 	background: rgb(68, 114, 196);
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 25;
+	font-size: 14;
 	color: white;
+	width: 100%;
 }
 select{
 	height: 25px;
@@ -43,6 +44,7 @@ select{
 	background-color:rgb(217,226,243);
 	border-style: inset;
 	border-color: white;
+	color: black;
 	padding: 1px 10px 1px 15px ;
 }
 .headings{
@@ -54,3 +56,38 @@ select{
 	border-style: outset;
 }
 .tr:nth-child(even){background-color: #f2f2f2}
+
+{% block content %}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(68, 114, 196);
+	position: fixed;
+    top: 0;
+	left: 0;
+	width: 100%;
+	
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: rgb(51,91,163);
+}
+
+.active {
+    background-color: white;
+	color: rgb(68, 114, 196);
+}

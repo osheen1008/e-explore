@@ -4,7 +4,7 @@ from .forms import DocumentForm
 from .models import Document
 import csv
 from collections import Counter
-from datetime import datetime
+from datetime import datetime, timedelta
 import os
 from glob import glob
 import shutil
@@ -30,6 +30,34 @@ def is_date(string):
         return True
     except ValueError:
         return False
+		
+def upload(request):
+	if request.method=='POST':
+		if request.POST.get("upload"): 
+		#######################################################################################################################
+			form = DocumentForm(request.POST, request.FILES)
+			t=datetime.now()+ timedelta(hours=5, minutes=30)
+			if form.is_valid():
+				newdoc = Document(docfile=request.FILES['docfile'], pub_date=t)
+				d=str(t.strftime('%Y-%m-%d_%H%M%S'))+'.csv'
+				#for f in os.listdir('documents/'):
+					#shutil.move('documents/'+f, 'documents/'+d)
+				newdoc.save()
+				excel = request.FILES['docfile'].name
+				excel = excel.replace(' ','_')
+				shutil.move('documents/'+excel, 'documents/'+d)
+				
+				time = Document.objects.latest('pub_date')	
+				return render(request, 'ExcelProcess/upload.html', {'msg':'Your document uploaded successfully', 'form':DocumentForm(), 'time':time})
+		
+	
+	#if user.groups.filter(name='upload').exists():
+	form = DocumentForm()
+	return render(request, 'ExcelProcess/upload.html', {'form':form})
+	#else:
+		#msg= "You are not authorised to upload the documents"
+		#return render(request, 'ExcelProcess/upload.html', {'msg':msg})
+	
 		
 def home(request):
 	global cols, fdata, body
@@ -77,7 +105,7 @@ def home(request):
 			cols=['All','SM+','M+','SA-']
 			fdata=[]
 			form = DocumentForm(request.POST, request.FILES)
-			t=datetime.now()
+			t=datetime.now()+ datetime.timedelta(hours=5, minutes=30)
 			if form.is_valid():
 				newdoc = Document(docfile=request.FILES['docfile'], pub_date=t)
 				d=str(t.strftime('%Y-%m-%d_%H%M%S'))+'.csv'

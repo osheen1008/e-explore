@@ -1,9 +1,11 @@
-
-<form class=back method="POST" action="{% url 'home' %}" enctype="multipart/form-data">
+<body class=back>
+<form method="POST" style="width: 100%;" action="{% url 'home' %}" enctype="multipart/form-data">
 
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
-<img style="position: absolute; width:400px; height:90px" src="{% static 'COG-Logo-White.svg' %}"/>
+
+<u><img style="z-index: 1; right:-50; position: absolute; width:400px; height:90px" src="{% static 'COG-Logo-White.svg' %}"/></u>
+
 
 <script >
 function go(){
@@ -31,28 +33,33 @@ function go(){
 };
 
 </script>
+
 {% csrf_token %}
+
 {% if user.is_authenticated %}
 <div style="padding:20px; text-align:right">
-User: {{ user.get_username }}<br/>
-<a style="padding:5px;" href="{% url 'logout'%}?next={{request.path}}">Logout</a></div> 
-<p style="text-align:right; font-size:14px;">
+<br/>
+<ul>
+  <li><a class="active" href="{% url 'home'%}?next={{request.path}}">Home</a></li>
+  <li><a href="{% url 'upload'%}?next={{request.path}}">Upload</a></li>
+  <li><a href="#contact">About</a></li>
+  <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+  
+</ul>
+</div> 
+<p style="float:right; right:0; padding:10; text-align: center; font-size:14px;">
+
+<u style="font-size:18px;">{{ user.get_username }}</u><br>
 	Last Upated: {{ time }}
-	<br/><br/>
+	<br/>
 	</p>
 <p>
-<center>
+
 {% csrf_token %}
-            <p>{{ form.non_field_errors }}</p>
-            <p>{{ form.docfile.label_tag }} 
-               {{ form.docfile.errors }}
-               {{ form.docfile }}
-			   <input class="button button_home" type="submit" value="Upload" name="upload"/>  
-            </p>
-            <p></p>
-			<hr>
+<br/><br/><br/>
+<div style="align:center; text-align:center; top:20; width:100%">
 <input type="hidden", id = "sel_col" name="sel_col", value="{{ body }}"/>
-<table class=back style="height: 188px;" width="639">
+<table align="center" style="height: 188px; overflow: auto; left:50" width="639">
 <tbody>
 <!------------------------------------------------------------------------------------------------------->
 
@@ -75,20 +82,21 @@ User: {{ user.get_username }}<br/>
 <option value="{{ branches| length }}">{{ branches| length }}</option>
 </select>
 </td>
-<td style="width: 152.8px; text-align: center;"><select name="signs">
-<option value="=">=</option>
-<option value="<">&lt;</option>
-<option value=">">&gt;</option>
+<td style="width: 152.8px; text-align: center;"><select style="width: 200px; text-align: center;" name="signs">
+<option  value="=">=</option>
+<option  value="<">&lt;</option>
+<option  value=">">&gt;</option>
 <option value="bet">between</option>
 </select></td>
 <td style="width: 153.6px;">
 <select style="display:none;" class=multiple name="field" multiple id="saturated" separator=","></select></td>
 <td style="width: 153.6px;"><input class="button button_home"	 type="submit" name="add_to_conditions" value="Add" /></td>
-<td style="width: 153.6px;" rowspan=6>
+<td style="width: 153.6px; overflow:auto;" rowspan=6>
 
 {% for c in conditions %}
-<li style="width: 153.6px; white-space: nowrap; padding-left:50" value="{{ c }}">{{ c }}</li>
+<li style="width: 153.6px; padding-left:5" value="{{ c }}">{{ c }}</li>
 {% endfor %}
+
 </td>
 </tr>
 <!------------------------------------------------------------------------------------------------------->
@@ -142,7 +150,7 @@ User: {{ user.get_username }}<br/>
 <td style="width: 153.6px;"> </td>
 </tr>
 </tbody>
-</table></center>
+</table></div>
 	</p>
 	<!------
 	{% if latest_q_list %}
@@ -169,7 +177,7 @@ User: {{ user.get_username }}<br/>
 {% if r is body.0 %}
 <tr>
 {% for c in r %}
-<td  border=1 class=headings >{{ c }} </td>
+<td  border=1 class=headings style="color:black;" >{{ c }} </td>
 {% endfor %}
 </tr>
 {% else %}
@@ -191,3 +199,4 @@ User: {{ user.get_username }}<br/>
 
 {% endif %}
 </form>
+</body>

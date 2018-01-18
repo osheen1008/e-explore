@@ -1,0 +1,42 @@
+<body class=back>
+<form method="POST" style="width: 100%;" action="{% url 'upload' %}" enctype="multipart/form-data">
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+
+<u><img style="z-index: 1; right:-50; position: absolute; width:400px; height:90px" src="{% static 'COG-Logo-White.svg' %}"/></u>
+{% csrf_token %}
+{% if user.is_authenticated %}
+
+<ul>
+  <li><a href="{% url 'home'%}?next={{request.path}}">Home</a></li>
+  <li><a class="active" href="{% url 'upload'%}?next={{request.path}}">Upload</a></li>
+  <li><a href="#contact">About</a></li>
+  <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+</ul>
+<div>
+<br/><br/><br/></br>
+{% load filter_tags %}
+{% if user|has_group:"uploads" %}
+<div style="width:100%; font-size: 20; left:35%; top:35%; height:100%; position:fixed; horizontal-align: center; vertical-align: middle" >
+<div> {{ msg }} </div>
+{% csrf_token %}
+            <p>{{ form.non_field_errors }}</p>
+            <p>{{ form.docfile.label_tag }} 
+               {{ form.docfile.errors }}
+               {{ form.docfile }}
+			   <input class="button button_home" type="submit" value="Upload" name="upload"/>  
+            </div>
+</div>
+{% else %}
+<div style="width:100%; font-size: 20; left:35%; top:35%; height:100%; position:fixed; horizontal-align: center; vertical-align: middle" >
+You are not authorised to upload the document :(
+Please return back</div>
+{% endif %}
+{% else %}
+<div style="text-align:center; padding-top:10%; padding-bottom:30%"><h2> You are not logged in.<br/><br/>
+ Please <a href="{% url 'login'%}?next={{request.path}}">Login</a> to use the service
+ </h2></div>
+{% endif %}
+</form>
+</body>
