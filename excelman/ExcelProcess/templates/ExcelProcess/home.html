@@ -1,4 +1,4 @@
-<body class=back>
+<body onload="presets()" class=back>
 <form method="POST" style="width: 100%;" action="{% url 'home' %}" enctype="multipart/form-data">
 
 {% load static %}
@@ -31,7 +31,16 @@ function go(){
 	}
 	{% endfor %}
 };
-
+function presets() {
+var sel = document.getElementById('cat');
+var opts = sel.options;
+for (var opt, j = 0; opt = opts[j]; j++) {
+    if (opt.value == "{{ cat_selected }}") {
+      sel.selectedIndex = j;
+      break;
+    }
+  }
+};
 </script>
 
 {% csrf_token %}
@@ -56,6 +65,26 @@ function go(){
 <p>
 
 {% csrf_token %}
+<div style="white-space:nowrap; align:right; width:100%">
+<select id='cat' name='cat' style="width:250; text-align: center; height:28;">
+<option value='Master List'>	Master List </option>
+<option value='Resource List'>	Resource List </option>
+<option value='Utilization Report'>	Utilization Report </option>
+<option value='NBL report'>	NBL report </option>
+<option value='Open Demands- Offshore'>	Open Demands- Offshore </option>
+<option value='Open demands Global report'>	Open demands Global report </option>
+<option value='PDP Report'>	PDP Report </option>
+<option value='Certification report'>	Certification report </option>
+<option value='Attrition Report'>	Attrition Report </option>
+<option value='Travel Ready Report'>	Travel Ready Report </option>
+<option value='Associate Skill details'>	Associate Skill details </option>
+<option value='Cloud Pipeline Report'>	Cloud Pipeline Report </option>
+<option value='Cloud Wins-2017'>	Cloud Wins-2017 </option>
+<option value='Cloud Wins-2018'>	Cloud Wins-2018 </option>
+</select>
+<input class="button button_home" type="submit" name="load" value="Load"/>
+</div>
+
 <br/><br/><br/>
 <div style="align:center; text-align:center; top:20; width:100%">
 <input type="hidden", id = "sel_col" name="sel_col", value="{{ body }}"/>
@@ -163,6 +192,7 @@ function go(){
     <p>No polls are available.</p>
 {% endif %}-->
 {% if body %}
+<p>Total {{ total }} records found</p>
 <p><input class="button button_home" type="submit", name="download", value="Download"/>
 <input class="button button_home" type="submit", name="Next", value="Next"/>
 <input class="button button_home" type="hidden", name="body", value="{{ body }}"/>

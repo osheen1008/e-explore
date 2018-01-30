@@ -23,6 +23,7 @@ form_vals={}
 conditions=[]
 body=[]
 lim=0
+cat = 'Master List'
 
 def is_date(string):
     try: 
@@ -43,9 +44,12 @@ def upload(request):
 				#for f in os.listdir('documents/'):
 					#shutil.move('documents/'+f, 'documents/'+d)
 				newdoc.save()
+				cat = request.POST['cat']
 				excel = request.FILES['docfile'].name
 				excel = excel.replace(' ','_')
-				shutil.move('documents/'+excel, 'documents/'+d)
+				if not os.path.exists('documents/'+cat):
+					os.makedirs('documents/'+cat)
+				shutil.move('documents/'+excel, 'documents/'+cat+'/'+excel+"--"+d)
 				
 				time = Document.objects.latest('pub_date')	
 				return render(request, 'ExcelProcess/upload.html', {'msg':'Your document uploaded successfully', 'form':DocumentForm(), 'time':time})
@@ -61,18 +65,17 @@ def upload(request):
 		
 def home(request):
 	global cols, fdata, body
-	#selected = ''
-	#fdata=[]
 	cols = ['All','SM+','M+','SA-']
 	form = DocumentForm()	
-	excel =  [(os.path.getctime('documents/'+x), x) for x in os.listdir("documents/")]
+	global cat
+	excel =  [(os.path.getctime('documents/'+cat+'/'+x), x) for x in os.listdir("documents/"+cat+"/")]
 	if len(excel)<1:
 		return render(request, 'ExcelProcess/home.html', {'form':form})
 	excel.sort()
 	excel=excel[-1][1]
 	
 	fdata=[]
-	with open('documents/'+excel, encoding='latin-1') as f:
+	with open('documents/'+cat+'/'+excel, encoding='latin-1') as f:
 					xl = csv.reader(f)
 					for r in xl:
 						fdata.append(r)
@@ -89,6 +92,7 @@ def home(request):
 	###############################################################################################################################
 	
 	if request.method=='POST':
+		
 		#return fdata
 		if request.POST.get("logout"):
 			user = User.objects.get(username=request.user)
@@ -98,34 +102,35 @@ def home(request):
 					s.delete() 
 			return render(request, 'registration/login.html')
 			
-			
-		if request.POST.get("upload"): 
-			
-			#######################################################################################################################
-			cols=['All','SM+','M+','SA-']
-			fdata=[]
-			form = DocumentForm(request.POST, request.FILES)
-			t=datetime.now()+ datetime.timedelta(hours=5, minutes=30)
-			if form.is_valid():
-				newdoc = Document(docfile=request.FILES['docfile'], pub_date=t)
-				d=str(t.strftime('%Y-%m-%d_%H%M%S'))+'.csv'
-				#for f in os.listdir('documents/'):
-					#shutil.move('documents/'+f, 'documents/'+d)
-				newdoc.save()
-				excel = request.FILES['docfile'].name
-				excel = excel.replace(' ','_')
-				shutil.move('documents/'+excel, 'documents/'+d)
-				
-				with open('documents/'+d, encoding='latin-1') as f:
-					xl = csv.reader(f)
-					for r in xl:
-						fdata.append(r)
-					cols.extend(fdata.pop(0))
-					#cols = list(filter(lambda x: x.strip()!='', cols))
-				time = Document.objects.latest('pub_date')	
-				return render(request, 'ExcelProcess/home.html', {'options':cols, 'branches':branches, 'form':DocumentForm(), 'time':time})
 		#############################################################################################################################
-		
+		elif request.POST.get("load"):
+			cat = request.POST['cat']
+			cols = ['All','SM+','M+','SA-']
+			if not os.path.exists('documents/'+cat):
+				return render(request, 'ExcelProcess/home.html', {'form':form, 'cat_selected':cat})
+			excel =  [(os.path.getctime('documents/'+cat+'/'+x), x) for x in os.listdir("documents/"+cat+"/")]
+			if len(excel)<1:
+				return render(request, 'ExcelProcess/home.html', {'form':form, 'cat_selected':cat})
+			excel.sort()
+			excel=excel[-1][1]
+			
+			fdata=[]
+			with open('documents/'+cat+'/'+excel, encoding='latin-1') as f:
+							xl = csv.reader(f)
+							for r in xl:
+								fdata.append(r)
+							cols.extend(fdata.pop(0))
+			
+			time = Document.objects.latest('pub_date')
+			
+			t = [ x for x in zip(*fdata) ]
+			branches={}
+			i=4
+			for x in t:
+				branches[cols[i]] = list(set(x[1:]))
+				i+=1
+			return render(request, 'ExcelProcess/home.html', {'options':cols,'form':form, 'cat_selected':cat, 'branches':branches, 'time':time})
+				
 		elif request.POST.get("generate"):
 			#return fdata
 			global body, lim
@@ -134,6 +139,7 @@ def home(request):
 			form_vals['of']=request.POST['pof']
 			form_vals['ag']=request.POST['pag']
 			body=process()
+			total=len(body) - 1
 			if form_vals['of'] != 'All':
 				return render(request, 'ExcelProcess/home.html',{'options':cols,'body': body, 'time':time})
 			sbody = [body[0]]
@@ -144,27 +150,26 @@ def home(request):
 			#download(body)
 			#header = body.pop(0)
 			#footer= body.pop()
-			return render(request, 'ExcelProcess/home.html',{'options':cols, 'branches':branches, 'body': sbody, 'time':time})
+			return render(request, 'ExcelProcess/home.html',{'options':cols, 'cat_selected':cat, 'total':total, 'branches':branches, 'body': sbody, 'time':time})
 		#############################################################################################################################
 		elif request.POST.get("Next"):
 			#global lim
 			sbody = [body[0]]
 			sbody.extend(body[min([len(body),(lim*20+1)]):min([len(body),(lim*20+1)+20])])
 			lim+=1
-			return render(request, 'ExcelProcess/home.html',{'options':cols, 'branches':branches, 'body': sbody, 'time':time})
+			return render(request, 'ExcelProcess/home.html',{'options':cols, 'cat_selected':cat, 'branches':branches, 'body': sbody, 'time':time})
+			
 		elif request.POST.get("download"):
-			
-			data=[[1,2,3,4,5],[6,7,8,9,10]]
-			
 			resp = HttpResponse(content_type='xlsx')
-			row = 0
+			row = 1
 			col = 0
 			workbook = xlsxwriter.Workbook(resp)
 			worksheet = workbook.add_worksheet()
+			worksheet.write(0, col, 'Details')
 			for r in body:
 				col=0
 				#w.writerow(r)
-				for c in r:
+				for c in list(r):
 					worksheet.write(row, col, c)
 					
 					col+=1
@@ -183,7 +188,7 @@ def home(request):
 			if request.POST['col']!='All':
 				conditions.insert(0, request.POST['col']+'\t'+request.POST['signs']+'\t'+ ",".join(request.POST.getlist("field")))
 			
-			return render(request, 'ExcelProcess/home.html', {'options':cols, 'form':DocumentForm(), 'branches':branches,  'time':time, 'conditions': conditions}) 
+			return render(request, 'ExcelProcess/home.html', {'options':cols, 'cat_selected':cat, 'form':DocumentForm(), 'branches':branches,  'time':time, 'conditions': conditions}) 
 		#############################################################################################################################
 			
 		elif request.POST.get("clear"):
@@ -193,7 +198,7 @@ def home(request):
 		#############################################################################################################################
 	
 	
-	return render(request, 'ExcelProcess/home.html', {'options':cols,'form':form, 'branches':branches, 'time':time})
+	return render(request, 'ExcelProcess/home.html', {'options':cols, 'cat_selected':cat, 'form':form, 'branches':branches, 'time':time})
 	
 	
 
@@ -314,7 +319,7 @@ def generate_csv():#fdata):
 			header.extend(ycol)
 			header.extend(map(lambda x: x+'%', ycol))
 			header.extend(['GRAND TOTAL','TOTAL PROPORTION'])
-			header = filter(lambda x: x.strip()!='', header)
+			header = list(filter(lambda x: x.strip()!='', header))
 			
 			gtotal = [ sum(x) for x in zip(*percent) ]
 			footer=['GRAND TOTAL']    #ADD GRAND TOTAL IN THE END
