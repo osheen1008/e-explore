@@ -1,7 +1,26 @@
-<body class=back>
+<body class=back onload="presets()">
 <form method="POST" style="width: 100%;" action="{% url 'upload' %}" enctype="multipart/form-data">
 <script>
+function presets() {
+var sel = document.getElementById('category');
+var opts = sel.options;
+for (var opt, j = 0; opt = opts[j]; j++) {
+    if (opt.value == "{{ category_selected }}") {
+      sel.selectedIndex = j;
+      break;
+    }
+  }
+};
 
+function get_them(){
+var checkboxes  = document.getElementsByName("x")
+for (var i=0; i<checkboxes.length; i++) {
+     // And stick the checked ones onto an array...
+     if (checkboxes[i].checked) {
+        alert(checkboxes[i].value);
+     }
+  }
+  }
 </script>
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
@@ -24,7 +43,7 @@
 <div> {{ msg }} </div>
 <div>
 Select Report type: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<select id="cat" required name="cat" style="width:250; text-align: center; height:28;">
+<select id="cat" name="cat" style="width:250; text-align: center; height:28;">
 <option value '' selected>---Select Category---</option>
 <option value='Master List'>	Master List </option>
 <option value='Resource List'>	Resource List </option>
@@ -48,8 +67,50 @@ Select Report type: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                {{ form.docfile.errors }}
                {{ form.docfile }}
 			   <input class="button button_home" type="submit" value="Upload" name="upload"/>  
-            </div>
+            
+			
+<div>
+<select id="category" name="category" style="width:250; text-align: center; height:28;">
+<option value '' selected>---Select Category---</option>
+<option value='Master List'>	Master List </option>
+<option value='Resource List'>	Resource List </option>
+<option value='Utilization Report'>	Utilization Report </option>
+<option value='NBL report'>	NBL report </option>
+<option value='Open Demands- Offshore'>	Open Demands- Offshore </option>
+<option value='Open demands Global report'>	Open demands Global report </option>
+<option value='PDP Report'>	PDP Report </option>
+<option value='Certification report'>	Certification report </option>
+<option value='Attrition Report'>	Attrition Report </option>
+<option value='Travel Ready Report'>	Travel Ready Report </option>
+<option value='Associate Skill details'>	Associate Skill details </option>
+<option value='Cloud Pipeline Report'>	Cloud Pipeline Report </option>
+<option value='Cloud Wins-2017'>	Cloud Wins-2017 </option>
+<option value='Cloud Wins-2018'>	Cloud Wins-2018 </option>
+</select>
+<input type="Submit" name="view" value="View files" />
+<input type="Submit" name="remove" value="Remove" /><br><br>
+{% if files %}
+<table>
+<thead style=""><td style="width: 152.8px;"><b>Files</b></td>
+<td style="width: 152.8px;"><b>Date</b></td>
+<td style="width: 152.8px;"><b>Mark</b></td></thead></tr>
+{% for f in files %}
+<tr><td>
+  <label>{{ f.0 }}</label>&nbsp;&nbsp;</td>
+  <td>
+  <label>{{ f.1 }}</label>&nbsp;&nbsp;</td>
+  <td><input type="checkbox" name="files" value="{{ f.0 }}--{{ f.1 }}" /><br/>
+  </td></tr>
+{% endfor %}
+</table>
+{% else %}
+<label> No files Available in selected Category </label>
+{% endif %}
 </div>
+</div>
+</div>
+
+
 {% else %}
 <div style="width:100%; font-size: 20; left:35%; top:35%; height:100%; position:fixed; horizontal-align: center; vertical-align: middle" >
 You are not authorised to upload the document :(

@@ -24,6 +24,7 @@ conditions=[]
 body=[]
 lim=0
 cat = 'Master List'
+category = '---Select Category---'
 
 def is_date(string):
     try: 
@@ -34,6 +35,7 @@ def is_date(string):
 		
 def upload(request):
 	if request.method=='POST':
+		global category
 		if request.POST.get("upload"): 
 		#######################################################################################################################
 			form = DocumentForm(request.POST, request.FILES)
@@ -53,8 +55,26 @@ def upload(request):
 				
 				time = Document.objects.latest('pub_date')	
 				return render(request, 'ExcelProcess/upload.html', {'msg':'Your document uploaded successfully', 'form':DocumentForm(), 'time':time})
-		
-	
+				
+		if request.POST.get("remove"): 
+			category = request.POST.get('category')
+			files = request.POST.getlist('files')
+			for f in files:
+				os.remove('documents/'+category+'/'+f+'.csv')
+			csvs = os.listdir('documents/'+category+'/')
+			csvs = [x.split('--') for x in csvs ]
+			csvs = [[x[0],x[1][:-4]] for x in csvs ]
+			return render(request, 'ExcelProcess/upload.html', {'files':csvs, 'category_selected': category})
+			
+		if request.POST.get("view"):
+			category = request.POST.get('category')
+			if not os.path.exists('documents/'+category):
+				return render(request, 'ExcelProcess/upload.html', {'category_selected': category})
+			csvs = os.listdir('documents/'+category+'/')
+			csvs = [x.split('--') for x in csvs ]
+			csvs = [[x[0],x[1][:-4]] for x in csvs ]
+			return render(request, 'ExcelProcess/upload.html', {'files':csvs, 'category_selected': category})
+			
 	#if user.groups.filter(name='upload').exists():
 	form = DocumentForm()
 	return render(request, 'ExcelProcess/upload.html', {'form':form})

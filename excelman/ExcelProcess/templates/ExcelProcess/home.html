@@ -4,7 +4,7 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 
-<u><img style="z-index: 1; right:-50; position: absolute; width:400px; height:90px" src="{% static 'COG-Logo-White.svg' %}"/></u>
+<u><img style="z-index: 1; right:-50; position: fixed; width:400px; height:90px" src="{% static 'COG-Logo-White.svg' %}"/></u>
 
 
 <script >
@@ -41,6 +41,27 @@ for (var opt, j = 0; opt = opts[j]; j++) {
     }
   }
 };
+
+function add_to_list() {
+var sel = document.getElementById('col');
+var ele = sel[sel.selectedIndex].value + ":\n";
+var items = document.getElementById('items');
+var select = document.getElementById('saturated');
+for (var i=0, iLen=select.length; i<iLen; i++) {
+selected = select[i];
+if (selected.selected){
+ele = ele + " -"+ selected.value + "\n";
+}}
+
+var li=document.createElement('dd');
+var title=document.createElement('dt');
+title.value= sel[sel.selectedIndex].value;
+li.innerHTML=ele;
+li.value = ele
+items.appendChild(li);
+items.appendChild(title);
+return false;
+};
 </script>
 
 {% csrf_token %}
@@ -56,7 +77,7 @@ for (var opt, j = 0; opt = opts[j]; j++) {
   
 </ul>
 </div> 
-<p style="float:right; right:0; padding:10; text-align: center; font-size:14px;">
+<p style="float:right; right:0; padding:10; position: fixed;  text-align: center; font-size:14px;">
 
 <u style="font-size:18px;">{{ user.get_username }}</u><br>
 	Last Upated: {{ time }}
@@ -98,7 +119,7 @@ for (var opt, j = 0; opt = opts[j]; j++) {
 <td style="width: 152.8px;">&nbsp;</td>
 <td style="width: 153.6px;">&nbsp;</td>
 <td style="width: 153.6px;">&nbsp;</td>
-<td style="width: 153.6px; white-space: nowrap; padding-left:50" >All Constraints</td>
+<td style="white-space: nowrap; text-align: center;">All Constraints</td>
 </tr>
 <!------------------------------------------------------------------------------------------------------->
 <tr>
@@ -120,10 +141,9 @@ for (var opt, j = 0; opt = opts[j]; j++) {
 <td style="width: 153.6px;">
 <select style="display:none;" class=multiple name="field" multiple id="saturated" separator=","></select></td>
 <td style="width: 153.6px;"><input class="button button_home"	 type="submit" name="add_to_conditions" value="Add" /></td>
-<td style="width: 153.6px; overflow:auto;" rowspan=6>
-
+<td style="width: 100px; overflow: auto;">
 {% for c in conditions %}
-<li style="width: 153.6px; padding-left:5" value="{{ c }}">{{ c }}</li>
+<li style="white-space: nowrap;  padding-left:5" value="{{ c }}">{{ c }}</li>
 {% endfor %}
 
 </td>
@@ -134,7 +154,7 @@ for (var opt, j = 0; opt = opts[j]; j++) {
 <td style="width: 152.8px;">&nbsp;</td>
 <td style="width: 152.8px;">&nbsp;</td>
 <td style="width: 153.6px;">&nbsp;</td>
-<td style="width: 153.6px;">&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <!------------------------------------------------------------------------------------------------------->
 <tr>
@@ -150,7 +170,7 @@ for (var opt, j = 0; opt = opts[j]; j++) {
 {% endfor %}
 </select></td>
 <td style="width: 153.6px;">&nbsp;</td>
-<td style="width: 152.8px; text-align: center;">&nbsp;&nbsp;</td>
+<td>&nbsp;&nbsp;</td>
 </tr>
 <!------------------------------------------------------------------------------------------------------->
 <tr>
@@ -158,7 +178,7 @@ for (var opt, j = 0; opt = opts[j]; j++) {
 <td style="width: 152.8px;">&nbsp;</td>
 <td style="width: 152.8px;">&nbsp;</td>
 <td style="width: 153.6px;">&nbsp;</td>
-<td style="width: 153.6px;">&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <!------------------------------------------------------------------------------------------------------->
 <tr>
@@ -166,7 +186,7 @@ for (var opt, j = 0; opt = opts[j]; j++) {
 <td style="width: 152.8px;">&nbsp;</td>
 <td style="width: 152.8px;">&nbsp;</td>
 <td style="width: 153.6px;">&nbsp;</td>
-<td style="width: 153.6px;">&nbsp;</td>
+<td>&nbsp;</td>
 </tr>
 <!------------------------------------------------------------------------------------------------------->
 <tr>
@@ -176,7 +196,7 @@ for (var opt, j = 0; opt = opts[j]; j++) {
 <td style="width: 153.6px; white-space:nowrap; padding-top:30">
 <input class="button button_home" type="submit" value="Generate" name="generate"/> 
 <input class="button button_home" type="submit" value="Clear" name="clear"/></td>
-<td style="width: 153.6px;"> </td>
+<td> </td>
 </tr>
 </tbody>
 </table></div>
